@@ -13,12 +13,30 @@ const getProductsList = () => {
 
 export default () => {
     const [products, setProducts] = useState( getProductsList() )
+
     const increaseHandle = (id) => {
-        console.log( id )
+        changeCounter(id, 1)
     }
+
     const decreaseHandle = (id) => {
-        console.log(id)
+        changeCounter(id, -1)
     }
+
+    const changeCounter = (id, alpha) => {
+        const arr = [...products]
+        const idx = arr.findIndex( p => p.id === id )
+        if ( idx !== -1 ) {
+            if ( arr[idx].counter === 0 && alpha < 0 ) {
+                alpha = 0
+            }
+            // const product = {...arr[ idx ]}
+            // product.counter += alpha
+            // arr[idx] = product
+            arr[idx].counter += alpha
+        }
+        setProducts(arr)
+    }
+
     return (
         <div>
             <ProductList
@@ -26,6 +44,7 @@ export default () => {
                 increaseHandle={increaseHandle}
                 decreaseHandle={decreaseHandle}
             />
+
         </div>
     )
 }

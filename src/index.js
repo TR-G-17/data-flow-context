@@ -2,9 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App'
+import AppClass from "./components/AppClass";
 
 ReactDOM.render(
-  <App />,
+  <AppClass />,
   document.getElementById('root')
 );
 
