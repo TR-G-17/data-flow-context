@@ -1,23 +1,26 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import Button from "./Button";
+import ButtonClass from "./ButtonClass";
+import {MyContextFunct} from "./App";
 
-export default ({id, counter, increaseHandle, decreaseHandle}) => {
+const ProductCounter = ({id, counter}) => {
+    const cnt = useContext(MyContextFunct)
     return (
         <div>
             <Button
                 id={id}
-                actionFunction={increaseHandle}
+                actionFunction={cnt.increaseHandle}
                 name="+1"
             />
-            {/*<button onClick={() => increaseHandle(id)}>+1</button>*/}
             <span>{counter}</span>
             <Button
                 id={id}
-                actionFunction={decreaseHandle}
+                actionFunction={cnt.decreaseHandle}
                 name="-1"
                 disabled={!counter}
             />
-            {/*<button disabled={!counter} onClick={() => decreaseHandle(id)}>-1</button>*/}
         </div>
     )
 }
+
+export default  ProductCounter

@@ -1,7 +1,7 @@
 import React from 'react'
 import Product from "./Product";
 
-export default ({products, increaseHandle, decreaseHandle}) => {
+export default ({products}) => {
     return (
         <ul>
             { products.map(p => (
@@ -11,8 +11,6 @@ export default ({products, increaseHandle, decreaseHandle}) => {
                         title={p.title}
                         price={p.price}
                         counter={p.counter}
-                        increaseHandle={increaseHandle}
-                        decreaseHandle={decreaseHandle}
                     />
                 </li>
             )) }

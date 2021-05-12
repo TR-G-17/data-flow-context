@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import ProductList from "./ProductList";
+import {MyContext} from "./AppClass";
 
 
 const getProductsList = () => {
@@ -10,6 +11,8 @@ const getProductsList = () => {
         {id: 4, title: 'Product 4', price: 150, counter: 0},
     ]
 }
+
+export const MyContextFunct = React.createContext()
 
 export default () => {
     const [products, setProducts] = useState( getProductsList() )
@@ -29,9 +32,6 @@ export default () => {
             if ( arr[idx].counter === 0 && alpha < 0 ) {
                 alpha = 0
             }
-            // const product = {...arr[ idx ]}
-            // product.counter += alpha
-            // arr[idx] = product
             arr[idx].counter += alpha
         }
         setProducts(arr)
@@ -39,11 +39,14 @@ export default () => {
 
     return (
         <div>
-            <ProductList
-                products={products}
-                increaseHandle={increaseHandle}
-                decreaseHandle={decreaseHandle}
-            />
+            <MyContextFunct.Provider value={{
+                increaseHandle,
+                decreaseHandle
+            }}>
+                <ProductList
+                    products={products}
+                />
+            </MyContextFunct.Provider>
 
         </div>
     )

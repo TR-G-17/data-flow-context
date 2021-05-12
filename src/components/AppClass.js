@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import ProductList from "./ProductList";
+import Counter from "./Counter";
 
 const getProductsList = () => {
     return [
@@ -9,6 +10,8 @@ const getProductsList = () => {
         {id: 4, title: 'Product 4', price: 150, counter: 0},
     ]
 }
+
+export const MyContext = React.createContext()
 
 export default class AppClass extends Component {
 
@@ -31,9 +34,6 @@ export default class AppClass extends Component {
             if ( arr[idx].counter === 0 && alpha < 0 ) {
                 alpha = 0
             }
-            // const product = {...arr[ idx ]}
-            // product.counter += alpha
-            // arr[idx] = product
             arr[idx].counter += alpha
         }
         this.setState({...this.state, products: arr})
@@ -42,12 +42,14 @@ export default class AppClass extends Component {
     render() {
         return (
             <div>
-                <ProductList
-                    products={this.state.products}
-                    increaseHandle={this.increaseHandle}
-                    decreaseHandle={this.decreaseHandle}
-                />
-
+                <MyContext.Provider value={{
+                    increaseHandle: this.increaseHandle,
+                    decreaseHandle: this.decreaseHandle
+                }}>
+                    <ProductList
+                        products={this.state.products}
+                    />
+                </MyContext.Provider>
             </div>
         )
     }

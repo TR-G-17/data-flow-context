@@ -1,7 +1,8 @@
 import React from 'react'
 import ProductCounter from "./ProductCounter";
+import ProductCounterClass from "./ProductCounterClass";
 
-export default ({id, title, price, counter, increaseHandle, decreaseHandle}) => {
+export default ({id, title, price, counter}) => {
     return (
         <div>
             <h3>{title}</h3>
@@ -9,8 +10,6 @@ export default ({id, title, price, counter, increaseHandle, decreaseHandle}) => 
             <ProductCounter
                 id={id}
                 counter={counter}
-                increaseHandle={increaseHandle}
-                decreaseHandle={decreaseHandle}
             />
         </div>
     )
